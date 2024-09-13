@@ -3,10 +3,10 @@ const axios = require("axios");
 const multer = require("multer");
 const FormData = require("form-data");
 const cors = require("cors");
-require("dotenv").config(); // Load environment variables
+require("dotenv").config();
 
 const app = express();
-app.use(cors()); // Allow requests from other domains
+app.use(cors());
 const port = 5000;
 
 const storage = multer.memoryStorage();
@@ -29,7 +29,7 @@ app.post("/slipok", upload.single("files"), async (req, res) => {
   try {
     const response = await axios.post(process.env.API_URL, formData, {
       headers: {
-        ...formData.getHeaders(), // Correctly set the headers for form-data
+        ...formData.getHeaders(),
         "x-authorization": process.env.API_KEY,
       },
     });
